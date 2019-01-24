@@ -230,7 +230,7 @@ namespace CryptoNote {
 			logger(INFO) << "Block is too big";
 			return false;
 		}
-
+/*
 		// Tax blockReward by 10 percent to R&D
 		uint64_t feeReward;
 		uint64_t modReward;
@@ -262,7 +262,7 @@ namespace CryptoNote {
 		// Push two tx out amounts. One for nbr project and another to research
 		outAmounts.insert(outAmounts.begin(), (feeReward / 2));
 		outAmounts.insert(outAmounts.begin(), (feeReward / 2));
-
+*/
     // Initialize Research address
     std::string addressStr = "NAeuqoLybEB4GJ2s2og6qDYsquWER4BCvWCGVZmiPtEEGnkw6xupy2DKT4522r85mmJUzmXAHBdq1ANdGaM2mag2RwaQhVP";
     CryptoNote::AccountPublicAddress researchAddress;
