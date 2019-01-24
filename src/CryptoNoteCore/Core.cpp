@@ -26,6 +26,7 @@
 #include "../Common/Util.h"
 #include "../Common/StringTools.h"
 #include "../crypto/crypto.h"
+#include "CryptoNoteCore/TransactionUtils.h"
 #include "../CryptoNoteProtocol/CryptoNoteProtocolDefinitions.h"
 #include "../Logging/LoggerRef.h"
 #include "../Rpc/CoreRpcServerCommandsDefinitions.h"
@@ -35,6 +36,7 @@
 #include "Miner.h"
 #include "TransactionExtra.h"
 #include "IBlock.h"
+#include <string>
 #undef ERROR
 
 using namespace Logging;
@@ -363,7 +365,9 @@ bool core::get_block_template(Block& b, const AccountPublicAddress& adr, difficu
     if (b.majorVersion == BLOCK_MAJOR_VERSION_1) {
       b.minorVersion = m_currency.upgradeHeight(BLOCK_MAJOR_VERSION_2) == UpgradeDetectorBase::UNDEF_HEIGHT ? BLOCK_MINOR_VERSION_1 : BLOCK_MINOR_VERSION_0;
     } else if (b.majorVersion >= BLOCK_MAJOR_VERSION_2) {
-      if (m_currency.upgradeHeight(BLOCK_MAJOR_VERSION_5) == UpgradeDetectorBase::UNDEF_HEIGHT) {
+	   if (m_currency.upgradeHeight(BLOCK_MAJOR_VERSION_6) == UpgradeDetectorBase::UNDEF_HEIGHT) {
+	b.minorVersion = b.majorVersion == BLOCK_MAJOR_VERSION_5 ? BLOCK_MINOR_VERSION_1 : BLOCK_MINOR_VERSION_0;
+      else if (m_currency.upgradeHeight(BLOCK_MAJOR_VERSION_5) == UpgradeDetectorBase::UNDEF_HEIGHT) {
         b.minorVersion = b.majorVersion == BLOCK_MAJOR_VERSION_4 ? BLOCK_MINOR_VERSION_1 : BLOCK_MINOR_VERSION_0;
       } else if (m_currency.upgradeHeight(BLOCK_MAJOR_VERSION_4) == UpgradeDetectorBase::UNDEF_HEIGHT) {
         b.minorVersion = b.majorVersion == BLOCK_MAJOR_VERSION_3 ? BLOCK_MINOR_VERSION_1 : BLOCK_MINOR_VERSION_0;
@@ -389,7 +393,9 @@ bool core::get_block_template(Block& b, const AccountPublicAddress& adr, difficu
 
     // Jagerman fix - https://github.com/graft-project/GraftNetwork/pull/118/commits
     uint64_t blockchain_timestamp_check_window = b.majorVersion < BLOCK_MAJOR_VERSION_5 ? parameters::BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW : parameters::BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW_V5;
-    if(height >= blockchain_timestamp_check_window) {
+    //trocar a versão do bloco acima para verificar o timestamp?
+	    
+      if(height >= blockchain_timestamp_check_window) {
       std::vector<uint64_t> timestamps;
       for(size_t offset = height - blockchain_timestamp_check_window; offset < height; ++offset) {
         timestamps.push_back(m_blockchain.getBlockTimestamp(offset));
