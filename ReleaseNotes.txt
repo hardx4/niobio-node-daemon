@@ -1,5 +1,8 @@
 Release notes Niobio Cash
 
+v1.6.8
+- Research and Dev Wallets Fees
+
 v1.6.3
 - DNS Checkpoints
 - Optimizes use of checkpoints
