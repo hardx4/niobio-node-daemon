@@ -569,7 +569,7 @@ bool core::handle_incoming_block_blob(const BinaryArray& block_blob, block_verif
     bvc.m_verifivation_failed = true;
     return false;
   }
-	/* Código MarketCash:
+	// Código MarketCash:
 	
 	//minhas alterações
   std::vector<uint32_t> out;
@@ -606,28 +606,28 @@ bool core::handle_incoming_block_blob(const BinaryArray& block_blob, block_verif
   //MINHAS ALTERAÇÕES
 
   //calcula
-  
+  */
     if ((previousBlockIndex + 1) >= 61) {
 	  //calculo da coinbase para a tx do hold
-	  //Hold forever go Marketcash :)
+	  //thanks Marketcash :)
 
 	  uint64_t blockTempReward;
 
 	  if (confirm_tx == 0) {
-		  logger(Logging::WARNING) << "AddBlock: Failed to validate block " << cachedBlock.getBlockHash() << " tx hold not found";
+		  logger(Logging::WARNING) << "AddBlock: Failed to validate block " << cachedBlock.getBlockHash() << " tx wallet and not found";
 		  return error::BlockValidationError::REJECT_TX_HOLD;
 	  }
 
 	  if ((currency.checkRewardConsensusHold(reward, amount, blockTempReward))) {
-		  logger(Logging::WARNING) << "Hold Consensus in Block " << (previousBlockIndex + 1) << " checked!!!";
+		  logger(Logging::WARNING) << "Research and Dev fees in Block " << (previousBlockIndex + 1) << " checked!!!";
 	  }
 	  else {
-		  logger(Logging::WARNING) << "Hold Consensus in Block " << (previousBlockIndex + 1) << " wrong!!!";
+		  logger(Logging::WARNING) << "Wallet and Dev fees Block " << (previousBlockIndex + 1) << " wrong!!!";
 		  return error::BlockValidationError::REJECT_TX_HOLD;
 	  }
   }
 	
-	*/
+	
 
 
   return handle_incoming_block(b, bvc, control_miner, relay_block);
