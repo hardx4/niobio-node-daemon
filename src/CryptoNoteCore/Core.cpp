@@ -569,6 +569,66 @@ bool core::handle_incoming_block_blob(const BinaryArray& block_blob, block_verif
     bvc.m_verifivation_failed = true;
     return false;
   }
+	/* Código MarketCash:
+	
+	//minhas alterações
+  std::vector<uint32_t> out;
+  uint64_t amount;  
+  uint64_t confirm_tx = 0;
+  Crypto::Hash private_view_key_hash;
+  size_t size;
+  std::string view_key = "d641065bee2e7516e560bbff5ee95eff7c5eb85b3ebe64dcdd08068bb1168008";
+  Common::fromHex(view_key, &private_view_key_hash, sizeof(private_view_key_hash), size);
+  SecretKey viewSecretKey = *(struct Crypto::SecretKey *) &private_view_key_hash;
+  std::string addrhash = "MoAn6DjAVDNVzVMALnWYZj2RQSimhZx5hbBR38zkXtL8Exahmg67RdnQiUWiX2aBes97ncaVKgByK4PwKWUiDen4JyeXApt";
+  AccountPublicAddress addr;
+  uint64_t prefix;
+  if (!(parseAccountAddressString(prefix, addr, addrhash))) {
+	  logger(Logging::INFO) << "endereco invalido";
+  }
+  //MINHAS ALTERAÇÕES
+
+
+  const auto& block = cachedBlock.getBlock();
+
+  const auto& transaction_temp = block.baseTransaction;
+
+  CryptoNote::TransactionPrefix transaction_pre = *static_cast<const TransactionPrefix*>(&transaction_temp);
+
+
+  //MINHAS ALTERAÇÕES
+  if ((CryptoNote::findOutputsToAccount(transaction_pre, addr, viewSecretKey, out, amount))) {
+	  if (amount > 0) {
+		  confirm_tx = 1;
+		  logger(Logging::INFO) << "Achou a transacao " << getObjectHash(block.baseTransaction) << " bloco: " << cachedBlock.getBlockHash() << " valor: " << amount << " Altura: " << (previousBlockIndex + 1);
+	  }
+  }
+  //MINHAS ALTERAÇÕES
+
+  //calcula
+  
+    if ((previousBlockIndex + 1) >= 61) {
+	  //calculo da coinbase para a tx do hold
+	  //Hold forever go Marketcash :)
+
+	  uint64_t blockTempReward;
+
+	  if (confirm_tx == 0) {
+		  logger(Logging::WARNING) << "AddBlock: Failed to validate block " << cachedBlock.getBlockHash() << " tx hold not found";
+		  return error::BlockValidationError::REJECT_TX_HOLD;
+	  }
+
+	  if ((currency.checkRewardConsensusHold(reward, amount, blockTempReward))) {
+		  logger(Logging::WARNING) << "Hold Consensus in Block " << (previousBlockIndex + 1) << " checked!!!";
+	  }
+	  else {
+		  logger(Logging::WARNING) << "Hold Consensus in Block " << (previousBlockIndex + 1) << " wrong!!!";
+		  return error::BlockValidationError::REJECT_TX_HOLD;
+	  }
+  }
+	
+	*/
+
 
   return handle_incoming_block(b, bvc, control_miner, relay_block);
 }
