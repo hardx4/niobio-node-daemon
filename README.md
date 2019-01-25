@@ -1,12 +1,12 @@
 # English
 
-The Niobio Cash is the Brazilian national cryptocurrency, just like Bitcoin but more anonymous and privacy centric with opaque and more analysis resistant blockchain. It is people's electronic cash, not connected to government or officials.
+Niobio cash is a Brazilian crypto-currency and aims to be a fast, secure, efficient and anonymous form of payment. In addition, 5% of the coins will be used to encourage research on Brazilian mineral wealth. It's the electronic money of the people, it is not linked to governments.
 
 ## Binaries
 
 You can download the binaries for Linux, MacOS, and Windows [HERE](https://github.com/niobio-cash/niobio-node-daemon/releases)
 
-## Building Niobio 
+## Building Niobio Cash
 
 ### On *nix and OSX
 
@@ -51,13 +51,13 @@ cmake -G "Visual Studio 12 Win64" ..
 ```
 
 # Português
-Niobio cash é uma criptomoeda brasileira, assim como o Bitcoin, mas mais anônima e centrada na privacidade, com resistência maior a análises da blockchain. É o dinheiro eletrônico das pessoas, não está ligado a governos.
+Niobio cash é uma criptomoeda brasileira e tem o objetivo de ser uma forma de pagamento rápida, segura, eficiente e anônima. Além disso, 5% das moedas, serão destinadas para o incentivo à pesquisas sobre as riquezas minerais brasileiras. É o dinheiro eletrônico das pessoas, não está ligado a governos.
 
 ## Binários
 
 Você pode realizar o download dos Binários para Linux, MacOS, e Windows [AQUI](https://github.com/niobio-cash/niobio-node-daemon/releases)
 
-## Compilando Niobio
+## Compilando Niobio Cash
 
 ### Em *nix e OSX
 
