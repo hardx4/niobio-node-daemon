@@ -1,4 +1,15 @@
 Release notes Niobio Cash
+v1.6.8
+- Research and Dev Wallets Fees Validation
+
+v1.6.7
+- Protection against 51% attack
+- Change DAA to LWMA1 (LWMAAdjusted)
+- Load dns checkpoints before validating alternative blocks
+- Rollback chain when node missed upgrade
+
+v1.6.6
+pre release
 
 v1.6.5
 - Burn vector attack protection
